@@ -7,6 +7,8 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
+import Modal from './components/Modal/Modal';
+import Profile from './components/Profile/Profile';
 import './App.css';
 
 
@@ -127,12 +129,15 @@ const initialState = {
   boxes: [],
   route: 'signin',
   isSignedIn: false,
+  isProfileOpen: false,
   user: {
     id: '',
     name: '',
     email: '',
     entries: 0,
-    joined: ''
+    joined: '',
+    pet: '',
+    age: ''
   }
 } 
 
@@ -209,24 +214,38 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      this.setState(initialState)
+      return this.setState(initialState)
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
       this.setState({route: route});
   }
 
+  toggleModal = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      isProfileOpen: !prevState.isProfileOpen
+    }))
+  }
+
   render() {
-    const { isSignedIn, imageUrl, route, boxes } = this.state;
+    const { isSignedIn, imageUrl, route, boxes, isProfileOpen, user } = this.state;
     return (
       <div className="App">
         <Particles className='particles'
           params={particlesOptions}
         />
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}
+          toggleModal={this.toggleModal}/>
+        { isProfileOpen &&
+              <Modal>
+                <Profile isProfileOpen={isProfileOpen} toggleModal={this.toggleModal} user={user}/>
+              </Modal>        
+        }
         { route === 'home'
           ? <div>
               <Logo />
+
               <Rank name={this.state.user.name} entries={this.state.user.entries} />
               <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
               <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
