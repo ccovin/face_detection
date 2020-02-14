@@ -1,5 +1,6 @@
 import React from 'react';
 import './Profile.css';
+import Group2 from './Group-2.png';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -52,33 +53,33 @@ class Profile extends React.Component {
       <div className="profile-modal">
         <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center bg-white">
           <main className="pa4 black-80 w-80">
-            <img src="http://tachyons.io/img/logo.jpg" className="br-100 pa1 ba b--black-10 h3 w3" alt="avatar" />
-            <h1>{this.state.name}</h1>
-            <h4>{`Images Submitted: ${user.entries}`}</h4>
-            <p>{`Member Since: ${new Date(user.joined).toLocaleDateString()}`}</p>
+            <img src={Group2} className="br-100 pa1 ba b--black-10 h3 w3" alt="avatar" />
+            <h1 className="purple">{this.state.name}</h1>
+            <h4 className="purple">{`Images Submitted: ${user.entries}`}</h4>
+            <p className="purple">{`Member Since: ${new Date(user.joined).toLocaleDateString()}`}</p>
             <hr />
-            <label className="mt2 fw6" htmlFor="username">Name:</label>
+            <label className="mt2 fw6 purple" htmlFor="username">Name:</label>
             <input 
                 onChange={this.onFormChange}
-                className="pa2 ba w-100" 
+                className="pa2 ba w-100 purple" 
                 placeholder={user.name}
                 type="text" 
                 name="user-name"  
                 id="name"
             />
-            <label className="mt2 fw6" htmlFor="user-age">Age:</label>
+            <label className="mt2 fw6 purple" htmlFor="user-age">Age:</label>
             <input 
                 onChange={this.onFormChange}
-                className="pa2 ba w-100" 
+                className="pa2 ba w-100 purple" 
                 placeholder={user.age}
                 type="text" 
                 name="user-age"  
                 id="age"
             />
-            <label className="mt2 fw6" htmlFor="user-pet">Pet:</label>
+            <label className="mt2 fw6 purple" htmlFor="user-pet">Pet:</label>
             <input 
                 onChange={this.onFormChange}
-                className="pa2 ba w-100" 
+                className="pa2 ba w-100 purple" 
                 placeholder={user.pet}
                 type="text" 
                 name="user-pet"  
@@ -87,7 +88,7 @@ class Profile extends React.Component {
             <div className="mt4" style={{ display: 'flex', justifyContent: 'space-evenly'}}>
               <button 
                 onClick={() => this.onProfileUpdate({ name, age, pet })}
-                className="b pa2 grow pointer hover-white w-40 bg-light-blue b--black-20">
+                className="b white pa2 grow pointer hover-white w-40 bg-purple b--black-20">
                 Save
               </button>
               <button className="b pa2 grow pointer hover-white w-40 bg-light-red b--black-20"

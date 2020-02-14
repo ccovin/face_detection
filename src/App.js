@@ -15,10 +15,10 @@ import './App.css';
 const particlesOptions = {
   "particles": {
       "number": {
-        "value": 223,
+        "value": 50,
         "density": {
           "enable": true,
-          "value_area": 473.49605814531554
+          "value_area": 200
         }
       },
       "color": {
@@ -54,7 +54,7 @@ const particlesOptions = {
         "random": true,
         "anim": {
           "enable": false,
-          "speed": 40,
+          "speed": 10,
           "size_min": 0.1,
           "sync": false
         }
@@ -68,7 +68,7 @@ const particlesOptions = {
       },
       "move": {
         "enable": true,
-        "speed": 6,
+        "speed": 1,
         "direction": "none",
         "random": false,
         "straight": false,
@@ -187,6 +187,8 @@ class App extends Component {
       name: data.name,
       email: data.email,
       entries: data.entries,
+      age: data.age,
+      pet: data.pet,
       joined: data.joined
     }})
   }
@@ -299,8 +301,14 @@ class App extends Component {
             </div>
           : (
               route === 'signin'
-              ? <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-              : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+              ? <div>
+                  <Logo />
+                  <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                </div>
+              : <div>
+                  <Logo />
+                  <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+                </div>
           )         
         }
       </div>
